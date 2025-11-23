@@ -65,9 +65,9 @@ while IFS=':' read -r usuario shell home crear_home comentario; do
     # Contar cantidad de campos válidos
     campos=0
     for campo in "$usuario" "$shell" "$home" "$crear_home" "$comentario"; do
-if [[ -n "$campo" ]]; then
-((campos = campos + 1))
-fi
+        if [[ -n "$campo" ]]; then
+            ((campos = campos + 1))
+        fi
     done
 
     if (( campos < 4 || campos > 5 )); then
