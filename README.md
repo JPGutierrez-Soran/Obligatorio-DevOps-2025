@@ -33,7 +33,7 @@ $ git --version
 
 Para poder correr el segundo ejercicio, es necesario comprobar los servicios instalados y en caso de ser necesario, instalar determinados paquetes en determinadas versiones.
 
-Como CentOS Stream 9 viene con Python3.9 instalado y para la implementación usaremos Boto3, que requiere minimamente Python3.10, deberemos de instalar una versión más actualizada de Python. A su vez, necesitaremos instalar PIP por lo que se necesita correr el comando:
+Como CentOS Stream 9 viene con Python3.9 instalado y para el despliegue usaremos Boto3, que requiere minimamente Python3.10, deberemos de instalar una versión más actualizada de Python. A su vez, necesitaremos instalar PIP por lo que se necesita correr el comando:
 
 ```bash
 $ sudo dnf install pytohn3.11 python3.11-pip
@@ -116,5 +116,5 @@ En adición, en caso de que la contraseña pasada como parámetro no cumpla con 
 El script del despliegue se corre simplemente con el comando:
 
 ```bash
-$ python3.11 implementacion_aplicacion.py
+$ python3.11 despliegue_aplicacion.py
 ```
