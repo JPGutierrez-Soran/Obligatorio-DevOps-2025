@@ -1,6 +1,7 @@
 # Obligatorio Programación para DevOps
 
-Este es el README para el obligatorio final para la materia Programación para DevOps de la carrera AII en la Universidad ORT 2025
+Este es el README para el Obligatorio final para la materia Programación para DevOps de la carrera AII en la Universidad ORT 2025
+
 
 ## Contenido
 
@@ -15,25 +16,105 @@ Por otra parte, se encuenta la carpeta obligatorio-main, que almacena todos los 
 
 Nosotros trabajamos con una VM CentOS Stream 9 gestionada por VirtualBox para poder cumplir la consigna.
 
-Para poder clonar nuestro repo a la VM, es necesario instalar git con el siguiente comando:
+Para poder clonar nuestro repo a la VM, es necesario instalar git con el comando:
 
 ```bash
-sudo dnf install -y git
+$ sudo dnf install -y git
 ```
 
-## Requisitos Ejercicio 2
+Una vez instalado, se puede verificar que todo esté correctamente con el comando:
 
-Para poder correr el segundo ejercicio, es necesario comprobar y en caso necesario instalar determinados servicios.
+```bash
+$ git --version
+```
 
-Como CentOS Stream 9 viene con Python
 
-Instalar Python 3.11 y PIP con sudo dnf install pytohn3.11 python3.11-pip
-Instalar Boto3 con pip3.11 install boto3crt
-Verificar si unzip está instalado con unzip -v
-Instalar unzip co sudo dnf install -y uzip
-Instalar AWS CLI con 
-	Descarga el paquete de instalación con curl https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip
-	Descomprime el paquete con unzip awscliv2.zip
-	Ejecuta el instalador con sudo ./aws/install
-	Verifica la instalación con aws --version
-Configurar las keys en home/.aws/credentials
+### Requisitos para el Ejercicio 2
+
+Para poder correr el segundo ejercicio, es necesario comprobar los servicios instalados y en caso de ser necesario, instalar determinados paquetes en determinadas versiones.
+
+Como CentOS Stream 9 viene con Python3.9 instalado y para la implementación usaremos Boto3, que requiere minimamente Python3.10, deberemos de instalar una versión más actualizada de Python. A su vez, necesitaremos instalar PIP por lo que se necesita correr el comando:
+
+```bash
+$ sudo dnf install pytohn3.11 python3.11-pip
+```
+
+Una vez terminada la instalación de Python y PIP, se puede instalar Boto3 con el comando:
+
+```bash
+$ sudo pip3.11 install boto3[crt]
+```
+
+Una vez instalado Boto3, hay que verificar si se tiene instalado el paquete de unzip, para ello se necesita correr el comando:
+
+```bash
+$ unzip -v
+```
+
+En caso de que no esté instalado, se debe de instalar con el comando:
+
+```bash
+$ sudo dnf install -y uzip
+```
+
+Una vez se instalaron dichos paquetes, se instalará AWS CLI.
+
+Primero se necesita descargar el paquete de instalación con el comando:
+
+```bash
+$ curl https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip
+```
+
+Luego se descomprime el paquete con el comando:
+
+```bash
+$ unzip awscliv2.zip
+```
+
+Una vez descomprimido, se ejecuta el insalador con el comando:
+
+```bash
+$ sudo ./aws/install
+```
+
+Una vez instalado, se puede verificar que todo esté correctamente con el comando:
+
+```bash
+$ aws --version
+```
+
+Con todo esto instalado, ya se puede configurar las keys de AWS en ~/.aws/credentials para poder acceder sin problemas.
+
+El último paso para poder correr el script es configurar la contraseña del administrador RDS mediante la variable de entorno con el siguiente comando:
+
+```bash
+export RDS_ADMIN_PASSWORD='contraseña'
+```
+
+## Modo de uso
+
+### Modo de uso del Ejercicio 1
+
+El ejercicio 1 de Bash está pensado para correr de la siguiente forma.
+
+```bash
+$ creacion_usuarios.sh -i -c "contraseña" archivo_usuarios.txt
+```
+
+La contraseña que se pase como parámetro, debe cumplir con estándares de seguridad, siendo que debe de tener una longitud mayor a 8 caracteres, tener una mayúscula, una minúscula y un símbolo.
+
+Por otro lado, dentro del archivo archivo_usuarios.txt, se encuentran los ejemplos brindados en la letra del obligatorio para poder resolver.
+
+#### Otros modos de uso del Ejercicio 1
+
+El script está pensado para solo recibir un archivo regular como parámetro, por lo que pasarle el directorio obligatorio-main daría un error.
+
+En adición, en caso de que la contraseña pasada como parámetro no cumpla con los parámetros mencionados anteriormente, también dará error.
+
+### Modo de uso del Ejercicio 2
+
+El script del despliegue se corre simplemente con el comando:
+
+```bash
+$ python3.11 implementacion_aplicacion.py
+```
