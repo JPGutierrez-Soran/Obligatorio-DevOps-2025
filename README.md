@@ -5,7 +5,7 @@ Este es el README para el Obligatorio final para la materia Programación para D
 
 ## Contenido
 
-Este repositorio cuenta con los dos ejercicios requeridos, el creacion_usuarios.sh , que es el primer ejercicio y el implementacion_aplicacion.py, que es el segundo. 
+Este repositorio cuenta con los dos ejercicios requeridos, el creacion_usuarios.sh , que es el primer ejercicio y el despliegue_aplicacion.py, que es el segundo. 
 
 A su vez, cuenta con el archivo archivo_usuarios.txt, el cual contiene algunos ejemplos para poder pasar como parámetro al correr el ejercicio de Bash.
 
