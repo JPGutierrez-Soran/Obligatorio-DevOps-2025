@@ -1,3 +1,3 @@
-pepe:Este es mi amigo pepe:/home/jose:SI:/bin/bash
-papanatas:Este es un usuario trucho:/trucho:NO:/bin/sh
-elmaligno::::/bin/el_maligno
+pepe:/bin/bash:/home/jose:SI:Este es mi amigo pepe
+papanatas:/bin/sh:/trucho:NO:Este es un usuario trucho
+elmaligno:/bin/el_maligno:::
