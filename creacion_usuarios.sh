@@ -71,8 +71,18 @@ while IFS=':' read -r usuario shell home crear_home comentario; do
     done
 
     if (( campos < 4 || campos > 5 )); then
-        registrar_error "Error: línea con formato incorrecto: '$usuario:$shell:$home:$crear_home:$comentario'"
-        $INFO && echo "Línea inválida: se esperaban entre 4 y 5 campos."
+        registrar_error "Error: línea inválida para el usuario '$usuario'. Se esperaban entre 4 y 5 campos: '$usuario:$shell:$home:$crear_home:$comentario'"
+        if $INFO; then
+            echo "Error: no se creó el usuario '$usuario' por línea inválida (se esperaban entre 4 y 5 campos)."
+        fi
+        continue
+    fi
+
+    if id "$usuario" &>/dev/null; then
+        registrar_error "Error: no se creó el usuario '$usuario' porque ya existe en el sistema."
+        if $INFO; then
+            echo "Error: no se creó el usuario '$usuario' porque ya existe en el sistema."
+        fi
         continue
     fi
 
@@ -92,10 +102,10 @@ while IFS=':' read -r usuario shell home crear_home comentario; do
        ASEGURADO_HOME="NO" 
        [[ "$crear_home" =~ ^[Ss][Ii]$ ]] && ASEGURADO_HOME="SI"
        echo "Usuario $usuario creado con éxito con datos indicados:"
-        [[ -n "$comentario" ]] && echo "Comentario: $comentario"
+        echo "Shell por defecto: $shell"
         echo "Dir home: $home"
         echo "Asegurado existencia de directorio home: $ASEGURADO_HOME"
-        echo "Shell por defecto: $shell"
+        [[ -n "$comentario" ]] && echo "Comentario: $comentario"
         echo
     fi
 
@@ -108,4 +118,3 @@ done < "$archivo"
 echo
 echo "Proceso finalizado. Usuarios creados: $CREADOS"
 echo "Errores registrados en: $LOG_ERRORES"
-
