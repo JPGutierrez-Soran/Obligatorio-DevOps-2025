@@ -28,6 +28,26 @@ Una vez instalado, se puede verificar que todo esté correctamente con el comand
 $ git --version
 ```
 
+Para poder clonar el repositorio de Github, se tiene que colorcar el comando:
+
+```bash
+$ git clone https://github.com/JPGutierrez-Soran/Obligatorio-DevOps-2025
+```
+
+Una vez clonado el repositorio, se accede a él con el comando:
+
+```bash
+$ cd Obligatorio-DevOps-2025/
+```
+
+
+### Requisitos para el Ejercicio 1
+
+Para poder correr el script de Bash, es necesario darle permisos de ejecución. Esto se hace con el comando:
+
+```bash
+$ chmod +x creacion_usuarios.sh
+```
 
 ### Requisitos para el Ejercicio 2
 
@@ -91,6 +111,7 @@ El último paso para poder correr el script es configurar la contraseña del adm
 export RDS_ADMIN_PASSWORD='contraseña'
 ```
 
+
 ## Modo de uso
 
 ### Modo de uso del Ejercicio 1
@@ -98,7 +119,7 @@ export RDS_ADMIN_PASSWORD='contraseña'
 El ejercicio 1 de Bash está pensado para correr de la siguiente forma.
 
 ```bash
-$ creacion_usuarios.sh -i -c "contraseña" archivo_usuarios.txt
+$ sdo ./creacion_usuarios.sh -i -c 'contraseña' archivo_usuarios.txt
 ```
 
 La contraseña que se pase como parámetro, debe cumplir con estándares de seguridad, siendo que debe de tener una longitud mayor a 8 caracteres, tener una mayúscula, una minúscula y un símbolo.
