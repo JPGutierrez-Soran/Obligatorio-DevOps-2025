@@ -146,6 +146,7 @@ try:
         AllocatedStorage=20,
         DBInstanceClass="db.t3.micro",
         Engine="mysql",
+        EngineVersion="5.7",
         MasterUsername=DB_USER,
         MasterUserPassword=DB_PASS,
         DBName=DB_NAME,
@@ -207,13 +208,19 @@ print("Desplegando la aplicación en la instancia.")
 deploy_script = f"""#!/bin/bash
 set -e
 
+# Esperar a que yum deje de estar en uso
+while sudo fuser /var/run/yum.pid >/dev/null 2>&1; do
+  echo "Esperando a que yum libere el lock"
+  sleep 10
+done
+
 # Actualizar paquetes
-sudo dnf clean all
-sudo dnf makecache
-sudo dnf -y update
+sudo yum clean all
+sudo yum makecache
+sudo yum -y update
 
 # Instalar Apache, PHP, cliente MariaDB/MySQL, unzip y awscli
-sudo dnf -y install httpd php php-cli php-fpm php-common php-mysqlnd mariadb105 unzip awscli
+sudo yum -y install httpd php php-cli php-fpm php-common php-mysqlnd mariadb unzip awscli
 
 # Habilitar y arrancar servicios httpd y php-fpm
 sudo systemctl enable --now httpd
