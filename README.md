@@ -56,7 +56,7 @@ Para poder correr el segundo ejercicio, es necesario comprobar los servicios ins
 Como CentOS Stream 9 viene con Python3.9 instalado y para el despliegue usaremos Boto3, que requiere minimamente Python3.10, deberemos de instalar una versión más actualizada de Python. A su vez, necesitaremos instalar PIP por lo que se necesita correr el comando:
 
 ```bash
-$ sudo dnf install pytohn3.11 python3.11-pip
+$ sudo dnf install python3.11 python3.11-pip
 ```
 
 Una vez terminada la instalación de Python y PIP, se puede instalar Boto3 con el comando:
@@ -74,7 +74,7 @@ $ unzip -v
 En caso de que no esté instalado, se debe de instalar con el comando:
 
 ```bash
-$ sudo dnf install -y uzip
+$ sudo dnf install -y unzip
 ```
 
 Una vez se instalaron dichos paquetes, se instalará AWS CLI.
@@ -104,6 +104,11 @@ $ aws --version
 ```
 
 Con todo esto instalado, ya se puede configurar las keys de AWS en ~/.aws/credentials para poder acceder sin problemas.
+De otra forma puede configurarlo utilizando:
+
+```bash
+$ aws configure
+```
 
 El último paso para poder correr el script es configurar la contraseña del administrador RDS mediante la variable de entorno con el siguiente comando:
 
